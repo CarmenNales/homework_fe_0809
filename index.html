@@ -11,21 +11,22 @@
 
     <!--    Always visible search interface-->
     <h1>Let's search some country information</h1>
-    <form class="flex-center-center">
-        <label for="query">Vraag:</label>
-        <input id="query" type="text" placeholder="Stel hier jouw vraag"/>
-        <input id="search" type="submit" value="Zoek!"/>
+    <form class="flex-space-around">
+        <label for="query">Enter a County below:</label>
+        <input id="query" class="font" placeholder="Stel hier jouw vraag" type="text"/>
+        <input id="search" class="font" type="submit" value="Search!"/>
     </form>
 
     <!--    Error box, hidden until needed-->
     <p class="hide" id="error"></p>
 
     <!--    Result box, hidden until needed-->
-    <div id="result" class="hide">
-
-        <img id="flag" src=""/>
-        <p id="header">Loading..</p>
-        <p id="text">Loading..</p>
+    <div class="hide" id="result">
+        <div class="flex-space-around">
+            <img id="flag" src=""/>
+            <p id="header">Loading..</p>
+            <p id="text">Loading..</p>
+        </div>
     </div>
 
 </main>

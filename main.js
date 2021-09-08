@@ -66,12 +66,9 @@ function createText(data) {
     const currencies = getCurrencies(data.currencies)
     const languages = getLanguages(data.languages)
 
-    const newString =
-        `${data.name} is situated in ${data.subarea}. It has a population of ${data.population} people.
-           The capital is ${data.capital} and you can pay with ${currencies}'s.
+    return `${data.name} is situated in ${data.subarea}. It has a population of ${data.population} people.
+        The capital is ${data.capital} and you can pay with ${currencies}'s.
         They speak ${languages}.`
-
-    return newString
 }
 
 // ---------------------------------------------------------
