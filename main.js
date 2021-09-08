@@ -1,21 +1,19 @@
 const API_URL = `https://restcountries.eu/rest/v2`
 
-let countryName = ''
-
 async function getDataOfCountry(countryName = '') {
 
     try {
 
-        // Call the api to get the data
+        // Call API om deze te gebruiken
         const api_call = `${API_URL}/name/${countryName}`
         console.log('Calling ', api_call)
         const result = await axios(api_call)
         console.log('Response: ', result)
 
-        // Destructure the data so we can use it
+        // Destructure de data om deze te gebruiken
         const {data, status} = result
 
-        // Check if everything went ok
+        // Controleer of alles goed gegaan is
         if (status !== 200) throw `Status was ${status}, reason: ${data}`
 
         return data[0]
@@ -29,43 +27,56 @@ async function getDataOfCountry(countryName = '') {
 
 // ---------------------------------------------------------
 
+// Functie om alle 'currencies' uit het object te halen
 function getCurrencies(currencies) {
 
+    // Loop door de currencies en zet deze in een variabele
     let displayCurrencies = currencies.map(a => a.name)
 
+    // Controleren of deze 1 currency bevat, zoja: return
     if (displayCurrencies.length === 1) {
         return displayCurrencies[0]
     }
 
+    // Controleren of deze 2 currencies bevat, zoja: return
     if (displayCurrencies.length === 2) {
         return displayCurrencies[0] + " and " + displayCurrencies[1]
     }
 
+    // Indien deze meer dan 2 currencies bevat, alles scheiden met een ',' alleen de laatste met 'and'
     let last = displayCurrencies.pop()
     return displayCurrencies.join(', ') + " and " + last
 }
 
+// Functie om alle 'languages' uit het object te halen
 function getLanguages(languages) {
 
+    // Loop door de languages en zet deze in een variabele
     let displayLanguages = languages.map(a => a.name)
 
+    // Controleren of deze 1 language bevat, zoja: return
     if (displayLanguages.length === 1) {
         return displayLanguages[0]
     }
 
+    // Controleren of deze 2 languages bevat, zoja: return
     if (displayLanguages.length === 2) {
         return displayLanguages[0] + " and " + displayLanguages[1]
     }
 
+    // Indien deze meer dan 2 languages bevat, alles scheiden met een ',' alleen de laatste met 'and'
     let last = displayLanguages.pop()
     return displayLanguages.join(', ') + " and " + last
 }
 
+// Functie voor het maken van de tekst voor een land
 function createText(data) {
 
+    // Functies van currencies en languages oproepen en opslaan in een variabele
     const currencies = getCurrencies(data.currencies)
     const languages = getLanguages(data.languages)
 
+    // Return alle opgevraagde informatie in een zin en return deze
     return `${data.name} is situated in ${data.subregion}. It has a population of ${data.population} people.
         The capital is ${data.capital} and you can pay with ${currencies}'s.
         They speak ${languages}.`
@@ -76,12 +87,13 @@ function createText(data) {
 window.onload = function () {
 
 
-    // Listen to click events on the submit button
+    // Luister naar click-events op de button
     document.getElementById('search').addEventListener('click', async event => {
 
+        // Zorg dat de console.log niet telkens refresht na een click
         event.preventDefault()
 
-        // Relevant elements
+        // Relevante elementen
         const errorField = document.getElementById('error')
         const resultBox = document.getElementById('result')
 
@@ -91,14 +103,14 @@ window.onload = function () {
         console.log('Search query: ', query)
 
 
-        // Get the data from de API
+        // GET data van de API
         try {
 
-            // Hide elements of old query
+            // Hide elements van oude query
             resultBox.classList.add('hide')
             errorField.classList.add('hide')
 
-            // Set loading status and get API data
+            // Zet loading status en GET API data
             event.target.value = 'Loading...'
             const data = await getDataOfCountry(query)
 
@@ -107,8 +119,6 @@ window.onload = function () {
             document.getElementById('flag').src = data.flag
             document.getElementById('header').innerHTML = data.name
             document.getElementById('text').innerHTML = createText(data)
-            // document.getElementById('currencies').innerHTML = getCurrencies(data.currencies)
-            // document.getElementById('languages').innerHTML = getLanguages(data.languages)
 
         } catch (e) {
 
@@ -124,11 +134,6 @@ window.onload = function () {
         }
 
     })
-
-    // Listen also to 'enter' as a click event
-    if (event.keyCode === 13) {
-        document.getElementById("search").click();
-    }
 
 }
 
