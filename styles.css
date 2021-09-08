@@ -1,4 +1,32 @@
 html {
     background: darkslategrey;
     color: yellow;
+    font-family: Quicksand, sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+
+form {
+    height: 10rem;
+    width: 20rem;
+    border: 4px dashed yellow;
+}
+
+.hide {
+    display: none;
+}
+
+#result {
+    margin-top: 2rem;
+    border-top: 2px solid yellow;
+}
+
+
+.flex-center-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

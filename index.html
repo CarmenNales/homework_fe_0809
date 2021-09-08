@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="main.js"></script>
-</head>
-<body>
 
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="flex-center-center">
+<main class="flex-center-center">
+
+    <!--    Always visible search interface-->
+    <h1>Let's search some country information</h1>
+    <form class="flex-center-center">
+        <label for="query">Vraag:</label>
+        <input id="query" type="text" placeholder="Stel hier jouw vraag"/>
+        <input id="search" type="submit" value="Zoek!"/>
+    </form>
+
+    <!--    Error box, hidden until needed-->
+    <p class="hide" id="error"></p>
+
+    <!--    Result box, hidden until needed-->
+    <div id="result" class="hide">
+        <p id="result_country">Loading..</p>
+        <p id="result_information">Loading..</p>
+    </div>
+</main>
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
