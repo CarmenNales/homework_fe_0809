@@ -65,9 +65,8 @@ form {
 }
 
 #flag {
-    height: 100px;
     width: 200px;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
 }
 
 #header {
